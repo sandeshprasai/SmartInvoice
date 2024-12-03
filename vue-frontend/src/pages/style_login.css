@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #6474bc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    color: black;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 2rem;
+  }
+  
+  .logo {
+    width: 20%;
+    height: auto;
+    margin-right: 1rem;
+    margin-bottom: -1rem;
+    border-radius: 20%;
+  }
+  .header .title {
+    font-size: 2rem;
+    margin-bottom: -1rem;
+    color: black;
+  }
+  
+  
+  .login-container {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    background-color: #C3E3FB;
+    padding: 2rem;
+    border-radius: 2%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .login-container p{
+    color: #6D92AE;
+  }
+  .login-container h1 {
+    margin-bottom: 1.5rem;
+    color: #070885;
+    
+  
+  }
+  
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  form label {
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+  
+  form input {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .check-rem {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 1rem;
+  }
+  
+  .check-rem input[type="checkbox"] {
+    transform: scale(1); 
+    margin-right: 0.5rem;
+  }
+  
+  
+  
+  button.btn-primary {
+    background-color: #EF7A04;
+    color: white;
+  }
+  
+  button.btn-primary:hover {
+    background-color: #8b5d2f;
+  }
+  
+  
+  a {
+    color: #070885;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
