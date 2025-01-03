@@ -144,6 +144,21 @@
   button:hover, .add-item:hover {
     background-color: #555;
   }
+  .tax-input {
+    display: flex;
+    align-items: center;
+  }
+  
+  .tax-input input {
+    width: 60px;
+    margin-right: 5px; /* Space between input field and percentage symbol */
+  }
+  
+  .percentage-symbol {
+    font-size: 14px;
+    color: #333;
+    margin-top: -8px; 
+  }
   
   /* Responsive Design with Media Queries */
   @media (max-width: 768px) {
@@ -194,5 +209,6 @@
     .invoice-items table {
       font-size: 14px;
     }
+    
   }
   

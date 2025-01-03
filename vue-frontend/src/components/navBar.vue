@@ -9,7 +9,7 @@
 
       <ul class="nav-links">
         <li><a href="#">Help</a></li>
-        <li><a href="#">History</a></li>
+        <li><a href="#">My Invoices</a></li>
         <li><a href="#">Invoicing Guide</a></li>
         
         <!-- Conditional Rendering -->
@@ -91,10 +91,13 @@ export default {
   width: 50px;
   height: auto;
   border-radius: 5px;
+  margin-top: -27px;
 }
 
 .title {
   font-size: 18px;
+  font-family: Arial, sans-serif;
+  margin-top: -30px;
 }
 
 /* Navigation Links */

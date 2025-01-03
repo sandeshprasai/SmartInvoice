@@ -112,8 +112,8 @@
           <div>
             <label>Tax</label>
             <div class="tax-input">
-              <input v-model="taxRate" type="number" value="0" />
-              <span>%</span>
+              <input v-model="taxRate" type="number" value="0"/>
+              <span class="percentage-symbol">%</span>
             </div>
           </div>
           <div>
@@ -165,6 +165,7 @@
           <option value="dollars">Dollars</option>
           <option value="euro">Euro</option>
         </select>
+        <button>Create</button>
         <button>Send to email</button>
         <hr />
       </div>
