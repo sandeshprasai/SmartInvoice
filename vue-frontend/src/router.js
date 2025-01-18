@@ -14,7 +14,7 @@ const routes = [
   { path: "/LoginPage", component: LoginPage, meta: { showNavBar: false, title: "Login - Smart Invoice" } },
   { path: "/DashBoard",  name: "DashBoard", component: Dashboard, meta: { showNavBar: true, title: "Dashboard - Smart Invoice"} },
   {path: "/LoginDashboard",component: MyInvoicesPage, meta: { showNavBar: true, title: "My Invoices - Smart Invoice" }},
-  {path:"/Reset_Password",component:ResetPassword, meta:{ showNavBar:false,title:"Reset Password - Smart Invoice"} },
+  {path:"/ResetPassword",component:ResetPassword, meta:{ showNavBar:false,title:"Reset Password - Smart Invoice"} },
   {path: "/HelpPage",component: HelpPage, meta: { showNavBar: true, title: "Help Page- Smart Invoice" }},
   {path: "/verifyOtp",component: OtpPage, meta: { showNavBar: false, title: "OTP- Smart Invoice" }},
   { path: "/", component: Dashboard, meta: { showNavBar: true, title: "Smart Invoice" } },
@@ -30,10 +30,6 @@ router.beforeEach(async (to, from, next) => {
   const isAuthenticated = await checkAuthStatus();
   console.log("Authentication status:", isAuthenticated);
 
-  if (to.path === "/DashBoard" && !isAuthenticated) {
-    console.log("Redirecting to LoginPage...");
-    return next("/LoginPage");
-  }
   if (to.path === "/" && isAuthenticated) {
     console.log("Redirecting to Dashboard...");
     return next("/DashBoard");

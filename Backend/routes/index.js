@@ -11,12 +11,14 @@ const validateToken = require("../util/validateToken");
 const otpGenerator = require("./../util/otpGeneration");
 const sendMail = require("../util/mailSender");
 const verifyOtp = require("../userController/verifyOtp");
+const fetchName = require("./../userController/sendUserName");
 
 const routes = express.Router();
 routes.post("/register", validateUser, registerUser);
 routes.post("/login", validatelogin, loginUser);
 routes.post("/refresh", refreshToken);
 routes.post("/verifyOtp", verifyOtp);
+routes.post("/FetchUserName", fetchName);
 
 routes.get("/users", validateToken, getUsersData);
 module.exports = routes;

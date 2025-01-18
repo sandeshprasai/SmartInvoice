@@ -13,7 +13,7 @@
         <li><a href="#">Invoicing Guide</a></li>
 
         <!-- Show User Name when logged in -->
-        <li v-if="isLoggedIn" class="user-name">{{ userName }}</li>
+        <li  class="user-name">{{ userName }}</li>
 
         <!-- Show "Sign In" and "Sign Up" when not logged in -->
         <li v-if="!isLoggedIn">
@@ -39,38 +39,43 @@ export default {
   name: "NavBar",
   data() {
     return {
-      isLoggedIn: !!localStorage.getItem("accessToken"), // Check login state
-      userName: localStorage.getItem("userName") || "Guest", // Default to "Guest"
+      isLoggedIn: !!localStorage.getItem("accessToken"),
+      userName: "Guest User",
     };
   },
   methods: {
-    // Fetch user name from the backend
-    fetchUserName() {
-      const token = localStorage.getItem("accessToken");
-      if (token) {
-        axios
-          .get("http://localhost:5000/api/user", {
-            headers: { Authorization: token },
-          })
-          .then((response) => {
-            this.userName = response.data.name; // Set user name from DB
-            localStorage.setItem("userName", this.userName); // Save to localStorage
-          })
-          .catch((error) => {
-            console.error("Error fetching user data", error);
-            this.userName = "Guest"; // Fallback to Guest if error occurs
-          });
+
+    async fetchUserName() {
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      if (!this.isLoggedIn)
+        return;
+
+      if (refreshToken) {
+        try {
+          console.log('Entered in try Block')
+          const response = await axios.post("http://localhost:8080/api/v1/FetchUserName", { refreshToken });
+          this.userName = response.data.fullName;
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          this.userName = "Guest";
+        }
       }
     },
 
     // Handle Logout
-    handleLogout() {
-      this.isLoggedIn = false; // Update the state
-      this.userName = "Guest"; // Switch to Guest
-      alert("Logged out!");
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("userName");
-      this.$router.push("/LoginPage"); // Redirect to the login page
+    async handleLogout() {
+      try {
+        this.isLoggedIn = false; 
+        this.userName = "Guest"; 
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userName");
+        alert("Logged out!");
+        await this.$router.push("/LoginPage"); // Redirect to the login page
+      } catch (error) {
+        console.error("Error during logout:", error);
+      }
     },
 
     // Redirect to Login Page
