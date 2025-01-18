@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   name: "NavBar",
@@ -45,44 +45,42 @@ export default {
   },
   methods: {
     // Fetch user name from the backend
-    async fetchUserName() {
+    fetchUserName() {
       const token = localStorage.getItem("accessToken");
       if (token) {
-        try {
-          const response = await axios.get("http://localhost:5000/api/user", {
+        axios
+          .get("http://localhost:5000/api/user", {
             headers: { Authorization: token },
+          })
+          .then((response) => {
+            this.userName = response.data.name; // Set user name from DB
+            localStorage.setItem("userName", this.userName); // Save to localStorage
+          })
+          .catch((error) => {
+            console.error("Error fetching user data", error);
+            this.userName = "Guest"; // Fallback to Guest if error occurs
           });
-          this.userName = response.data.name; // Set user name from DB
-          localStorage.setItem("userName", this.userName); // Save to localStorage
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-          this.userName = "Guest"; // Fallback to Guest if error occurs
-        }
       }
     },
 
     // Handle Logout
-    async handleLogout() {
-      try {
-        this.isLoggedIn = false; // Update the state
-        this.userName = "Guest"; // Switch to Guest
-        alert("Logged out!");
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("userName");
-        await this.$router.push("/LoginPage"); // Redirect to the login page
-      } catch (error) {
-        console.error("Error during logout:", error);
-      }
+    handleLogout() {
+      this.isLoggedIn = false; // Update the state
+      this.userName = "Guest"; // Switch to Guest
+      alert("Logged out!");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("userName");
+      this.$router.push("/LoginPage"); // Redirect to the login page
     },
 
     // Redirect to Login Page
-    async handleLogin() {
-      await this.$router.push("/LoginPage");
+    handleLogin() {
+      this.$router.push("/LoginPage");
     },
 
     // Redirect to Signup Page
-    async handleSignup() {
-      await this.$router.push("/Signup");
+    handleSignup() {
+      this.$router.push("/Signup");
     },
   },
   created() {
